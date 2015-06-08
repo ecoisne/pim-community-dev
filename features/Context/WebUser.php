@@ -3,13 +3,17 @@
 namespace Context;
 
 use Behat\Behat\Context\Step;
+use Behat\Behat\Context\Step\Then;
 use Behat\Behat\Exception\BehaviorException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Mink\Exception\ExpectationException;
 use Behat\Mink\Exception\UnsupportedDriverActionException;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Pim\Bundle\CatalogBundle\Model\Product;
+use Pim\Bundle\EnrichBundle\Mailer\MailRecorder;
 use Pim\Bundle\EnrichBundle\MassEditAction\Operation\BatchableOperationInterface;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
 /**
  * Context of the website
@@ -223,6 +227,7 @@ class WebUser extends RawMinkContext
      */
     public function iOpenTheHistory()
     {
+        // TODO use more specific wait conitions
         $this->getCurrentPage()->openPanel('History');
         $this->wait();
 
@@ -237,8 +242,8 @@ class WebUser extends RawMinkContext
      */
     public function iOpenThePanel($panel)
     {
-        $this->wait();
         $this->getCurrentPage()->openPanel($panel);
+        // TODO use more specific wait conitions
         $this->wait();
     }
 
@@ -338,8 +343,11 @@ class WebUser extends RawMinkContext
 
     /**
      * @param TableNode $table
+     * @param string    $productPage
      *
      * @Then /^the locale switcher should contain the following items:$/
+     *
+     * @throws ExpectationException
      */
     public function theLocaleSwitcherShouldContainTheFollowingItems(TableNode $table, $productPage = 'edit')
     {
@@ -718,6 +726,8 @@ class WebUser extends RawMinkContext
      * @param string $field
      *
      * @Then /^I should (not )?see a remove link next to the "([^"]*)" field$/
+     *
+     * @throws ExpectationException
      */
     public function iShouldSeeARemoveLinkNextToTheField($not, $field)
     {
@@ -1053,6 +1063,8 @@ class WebUser extends RawMinkContext
      * @param string $link
      *
      * @Given /^I open "([^"]*)" in the current window$/
+     *
+     * @throws ExpectationException
      */
     public function iOpenInTheCurrentWindow($link)
     {
@@ -1647,6 +1659,8 @@ class WebUser extends RawMinkContext
      * @param TableNode $table
      *
      * @Then /^I should see the completeness:$/
+     *
+     * @throws ExpectationException
      */
     public function iShouldSeeTheCompleteness(TableNode $table)
     {

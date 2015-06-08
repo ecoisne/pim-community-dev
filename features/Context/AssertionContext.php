@@ -9,6 +9,7 @@ use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\RawMinkContext;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
 /**
  * Context for assertions
@@ -141,6 +142,8 @@ class AssertionContext extends RawMinkContext
      * @param string $fields
      *
      * @Given /^the fields? (.*) should be disabled$/
+     *
+     * @throws ExpectationException
      */
     public function theFieldsShouldBeDisabled($fields)
     {
@@ -176,6 +179,8 @@ class AssertionContext extends RawMinkContext
      * @param TableNode $tableNode
      *
      * @Then /^I should see a confirm dialog with the following content:$/
+     *
+     * @throws ExpectationException
      */
     public function iShouldSeeAConfirmDialog(TableNode $tableNode)
     {
@@ -208,6 +213,8 @@ class AssertionContext extends RawMinkContext
      * @param string $link
      *
      * @Then /^I should not see the "([^"]*)" link$/
+     *
+     * @throws ExpectationException
      */
     public function iShouldNotSeeTheLink($link)
     {
@@ -220,6 +227,8 @@ class AssertionContext extends RawMinkContext
      * @param TableNode $table
      *
      * @Then /^I should see history:$/
+     *
+     * @throws ExpectationException
      */
     public function iShouldSeeHistory(TableNode $table)
     {
@@ -292,6 +301,8 @@ class AssertionContext extends RawMinkContext
 
     /**
      * @param TableNode $table
+     *
+     * @throws ExpectationException
      */
     public function iShouldSeeHistoryInPanel(TableNode $table)
     {
@@ -382,6 +393,8 @@ class AssertionContext extends RawMinkContext
      * @param $version
      *
      * @Then /^the version (\d+) should be marked as published$/
+     *
+     * @throws ExpectationException
      */
     public function versionShouldBeMarkedAsPublished($version)
     {

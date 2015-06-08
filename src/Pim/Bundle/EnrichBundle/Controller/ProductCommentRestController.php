@@ -84,8 +84,9 @@ class ProductCommentRestController
      */
     public function getAction(Request $request, $id)
     {
-        $product = $this->findProductOr404($id);
+        $product  = $this->findProductOr404($id);
         $comments = $this->commentManager->getComments($product);
+        // TODO unused variable
         $class = $this->productManager->getProductName();
 
         return new JsonResponse($this->normalizer->normalize($comments, 'json'));
@@ -143,11 +144,11 @@ class ProductCommentRestController
     {
         $product = $this->findProductOr404($id);
 
-        $data = json_decode($request->getContent(), true);
+        $data           = json_decode($request->getContent(), true);
         $data['parent'] = $commentId;
 
         $reply = $this->commentBuilder->buildComment($product, $this->getUser());
-        $form = $this->formFactory->create(
+        $form  = $this->formFactory->create(
             'pim_comment_comment',
             $reply,
             ['is_reply' => true, 'csrf_protection' => false]

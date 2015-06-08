@@ -7,6 +7,7 @@ use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Context\Page\Base\Form;
+use Context\Page\Category\CategoryView;
 
 /**
  * Product edit page
@@ -102,6 +103,8 @@ class Edit extends Form
 
     /**
      * @param string $locale
+     *
+     * @throws \Exception
      */
     public function switchLocale($locale)
     {
@@ -138,6 +141,8 @@ class Edit extends Form
 
     /**
      * @param string $scope
+     *
+     * @throws \Exception
      */
     public function switchScope($scope)
     {
@@ -189,8 +194,6 @@ class Edit extends Form
     }
 
     /**
-     * @param string $group
-     *
      * @return NodeElement
      */
     public function getFields()
@@ -247,6 +250,8 @@ class Edit extends Form
 
     /**
      * @param string $name
+     *
+     * @throws ElementNotFoundException
      *
      * @return NodeElement
      */
@@ -425,7 +430,7 @@ class Edit extends Form
     /**
      * Fills a textarea field element with $value, identified by its container or label.
      *
-     * @param NodeElement $fieldContainerOrLabel
+     * @param NodeElement $fieldContainer
      * @param string      $value
      */
     protected function fillTextAreaField(NodeElement $fieldContainer, $value)
@@ -446,10 +451,11 @@ class Edit extends Form
      * @param NodeElement $fieldContainer
      * @param string      $value
      *
-     * @throws \InvalidArgumentException
+     * @throws ExpectationException
      */
     protected function fillSelectField(NodeElement $fieldContainer, $value)
     {
+        // TODO use spin method
         if (null !== $link = $fieldContainer->find('css', 'a.select2-choice')) {
             $link->click();
 
@@ -575,7 +581,7 @@ class Edit extends Form
         if (null !== $select) {
             if (null !== $link = $field->find('css', 'a.select2-choice')) {
                 $link->click();
-
+                // TODO use spin method instead
                 $this->getSession()->wait(5000, '!$.active');
 
                 if (null !== $item = $this->find('css', sprintf('#select2-drop li:contains("%s")', $select))) {
@@ -707,14 +713,14 @@ class Edit extends Form
     }
 
     /**
-     * @return NodeElement|void
+     * @return NodeElement|null
      */
     public function getImagePreview()
     {
         $preview = $this->getElement('Image preview');
 
         if (!$preview || false === strpos($preview->getAttribute('style'), 'display: block')) {
-            return;
+            return null;
         }
 
         return $preview;

@@ -4,6 +4,7 @@ define(
     ['underscore'],
     function (_) {
         return {
+            // TODO use a template file
             flagTemplate: _.template(
                 '<span class="flag-language">' +
                     '<i class="flag flag-<%= country %>"></i>' +

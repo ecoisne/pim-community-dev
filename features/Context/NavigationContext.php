@@ -225,7 +225,6 @@ class NavigationContext extends RawMinkContext implements PageObjectAwareInterfa
         $getter = sprintf('get%s', $page);
         $entity = $this->getFixturesContext()->$getter($identifier);
         $this->openPage(sprintf('%s edit', $page), ['id' => $entity->getId()]);
-        $this->wait();
     }
 
     /**
@@ -620,6 +619,7 @@ class NavigationContext extends RawMinkContext implements PageObjectAwareInterfa
     {
         $expectedAddress = $this->getPage('Product index')->getUrl();
         $this->assertAddress($expectedAddress);
+        // TODO why wait() here ?
         $this->wait();
     }
 
@@ -632,6 +632,7 @@ class NavigationContext extends RawMinkContext implements PageObjectAwareInterfa
     {
         $expectedAddress = $this->getPage('Product edit')->getUrl(['id' => $product->getId()]);
         $this->assertAddress($expectedAddress);
+        // TODO why wait() here ?
         $this->wait();
     }
 

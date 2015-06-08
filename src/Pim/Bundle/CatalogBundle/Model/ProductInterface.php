@@ -344,14 +344,14 @@ interface ProductInterface extends
     /**
      * Get created datetime
      *
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreated();
 
     /**
      * Set created datetime
      *
-     * @param DateTime $created
+     * @param \DateTime $created
      *
      * @return ProductInterface
      */
@@ -360,14 +360,14 @@ interface ProductInterface extends
     /**
      * Get updated datetime
      *
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdated();
 
     /**
      * Set updated datetime
      *
-     * @param DateTime $updated
+     * @param \DateTime $updated
      *
      * @return ProductInterface
      */

@@ -14,9 +14,7 @@ use Pim\Bundle\TransformBundle\Normalizer\Structured;
  */
 class GroupNormalizer extends Structured\GroupNormalizer
 {
-    /**
-     * @var array
-     */
+    /** @var string[] */
     protected $supportedFormats = array('csv');
 
     /**
@@ -60,6 +58,7 @@ class GroupNormalizer extends Structured\GroupNormalizer
         foreach ($values as $value) {
             $normalizedValues = array_merge(
                 $normalizedValues,
+                // TODO interface problem : SerializerInterface do not have normalize method
                 $this->serializer->normalize($value, $format, ['entity' => 'product'] + $context)
             );
         }

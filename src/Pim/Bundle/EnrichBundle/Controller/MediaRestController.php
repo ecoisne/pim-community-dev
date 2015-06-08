@@ -24,7 +24,9 @@ class MediaRestController
     /**
      * Post a new media and return it's temporary identifier
      *
-     * @return JSONResponse
+     * @param Request $request
+     *
+     * @return JsonResponse
      */
     public function postAction(Request $request)
     {

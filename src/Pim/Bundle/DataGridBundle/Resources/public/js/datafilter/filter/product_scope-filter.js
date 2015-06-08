@@ -73,6 +73,7 @@ define(
              * @property
              * @see Oro.Filter.SelectFilter
              */
+            // TODO could be extracted it in a text template
             template: _.template(
                 '<div class="btn filter-select filter-criteria-selector scope-filter">' +
                     '<i class="icon-eye-open" title="<%= label %>"></i>' +

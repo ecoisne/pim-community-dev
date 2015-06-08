@@ -88,7 +88,7 @@ class CompletenessRestController
         $this->completenessManager->generateMissingForProduct($product);
 
         $channels = $this->channelManager->getFullChannels();
-        $locales = $this->userContext->getUserLocales();
+        $locales  = $this->userContext->getUserLocales();
 
         $fitleredLocales = $this->collectionFilter->filterCollection($locales, 'pim:internal_api:locale:view');
 

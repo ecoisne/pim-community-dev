@@ -2,8 +2,10 @@
 
 namespace Context\Page\Base;
 
+use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\UnsupportedDriverActionException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
 use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
 /**
@@ -15,15 +17,15 @@ use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
  */
 class Base extends Page
 {
-    protected $elements = array(
-        'Dialog'         => array('css' => 'div.modal'),
-        'Title'          => array('css' => '.navbar-title'),
-        'Product title'  => array('css' => '.product-title'),
-        'HeadTitle'      => array('css' => 'title'),
-        'Flash messages' => array('css' => '.flash-messages-holder'),
-        'Navigation Bar' => array('css' => 'header#oroplatform-header'),
-        'Container'      => array('css' => '#container'),
-    );
+    protected $elements = [
+        'Dialog'         => ['css' => 'div.modal'],
+        'Title'          => ['css' => '.navbar-title'],
+        'Product title'  => ['css' => '.product-title'],
+        'HeadTitle'      => ['css' => 'title'],
+        'Flash messages' => ['css' => '.flash-messages-holder'],
+        'Navigation Bar' => ['css' => 'header#oroplatform-header'],
+        'Container'      => ['css' => '#container'],
+    ];
 
     /**
      * {@inheritdoc}
@@ -84,7 +86,7 @@ class Base extends Page
      *
      * @return string
      */
-    public function getUrl(array $options = array())
+    public function getUrl(array $options = [])
     {
         $url = $this->getPath();
 
@@ -140,10 +142,10 @@ class Base extends Page
         if (!$button) {
             $button =  $this->find(
                 'named',
-                array(
+                [
                     'link',
                     $this->getSession()->getSelectorsHandler()->xpathLiteral($locator)
-                )
+                ]
             );
         }
 
