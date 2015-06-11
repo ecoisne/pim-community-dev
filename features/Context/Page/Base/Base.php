@@ -32,6 +32,7 @@ class Base extends Page
      */
     public function verifyAfterLogin()
     {
+        return true;
     }
 
     /**
