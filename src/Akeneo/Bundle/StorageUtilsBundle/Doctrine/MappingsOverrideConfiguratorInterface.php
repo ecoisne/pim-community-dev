@@ -3,7 +3,6 @@
 namespace Akeneo\Bundle\StorageUtilsBundle\Doctrine;
 
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\DBAL\Configuration;
 
 /**
  * Configure the mappings of the metadata classes.
@@ -24,10 +23,10 @@ interface MappingsOverrideConfiguratorInterface
      *  ]
      *
      * @param ClassMetadata $metadata
-     * @param Configuration $configuration
+     * @param mixed         $configuration
      * @param array         $mappingOverrides
      *
      * @return ClassMetadata
      */
-    public function configure(ClassMetadata $metadata, Configuration $configuration, array $mappingOverrides);
+    public function configure(ClassMetadata $metadata, array $mappingOverrides, $configuration);
 }
